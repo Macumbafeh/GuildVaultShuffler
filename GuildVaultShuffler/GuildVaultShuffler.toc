@@ -1,0 +1,9 @@
+## Interface: 20400
+## Title: Guild Vault Shuffler
+## Notes: Arranges vault items using user-defined template.
+## Author: Siarkowy
+## Version: 0.1
+## SavedVariables: GVSDB
+
+core.lua
+slash.lua
