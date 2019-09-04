@@ -137,6 +137,25 @@ function Shuffler:EnhanceVaultUI()
         if id == 1 then b:Show() else b:Hide() end
     end)
 
+    local function GuildBankButtonOnClick(frame, btn, isDown)
+        local tab = GetCurrentGuildBankTab()
+        local slot = frame:GetParent():GetID() + frame:GetID()
+        local item = tonumber((GetGuildBankItemLink(tab, slot) or ""):match("item:(%d+)"))
+
+        if btn == "MiddleButton" then
+            self:SetItemForSlot(pair2id(tab, slot), not IsControlKeyDown() and item or nil)
+            ClearCursor()
+        end
+    end
+
+    for col = 1, 7 do
+        for btn = 1, 14 do
+            local f = getglobal(format("GuildBankColumn%dButton%d", col, btn))
+            f:RegisterForClicks("AnyUp")
+            f:HookScript("OnClick", GuildBankButtonOnClick)
+        end
+    end
+
     local menu = {
         {
             text = "Taint wrong items",
